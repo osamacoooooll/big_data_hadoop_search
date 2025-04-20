@@ -7,7 +7,7 @@ if len(sys.argv) != 2:
     print("Usage: spark-submit query.py \"your query here\"")
     sys.exit(1)
 
-query = sys.argv[0]
+query = sys.argv[1]
 print(query)
 TERMS = re.findall(r"\w+", query.lower())
 

@@ -20,4 +20,7 @@ mapred streaming \
 
 # View output
 echo -e "\nIndexing complete. Output:"
-hdfs dfs -cat $HDFS_OUTPUT/part-*
+hdfs dfs -cat $HDFS_OUTPUT/part-* > index_output.txt
+
+# Run the Cassandra loader
+python3 app.py index_output.txt
