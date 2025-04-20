@@ -4,6 +4,7 @@ from cassandra.cluster import Cluster
 from pyspark import SparkContext
 
 if len(sys.argv) != 2:
+    print(sys.argv)
     print("Usage: spark-submit query.py \"your query here\"")
     sys.exit(1)
 
@@ -55,6 +56,7 @@ scores = (rdd
 top10 = scores.takeOrdered(10, key=lambda x: -x[1])
 
 # 6) Lookup titles & print
+print(f"the search quary that we have: {query}")
 print(f"number of docs retrieved:{len(top10)}")
 for doc_id, score in top10:
     row = session.execute("SELECT title FROM documents WHERE doc_id=%s", (doc_id,)).one()
